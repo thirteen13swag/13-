@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>SECRET PAGE</title>
+    <style>
+        body {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #800000;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        
+        h1 {
+            text-shadow: none;
+        }
+
+        #secretLink {
+            display: none;
+            color: #800000;
+            margin-top: 20px;
+        }
+
+        /* Стили для скрытого аудиоплеера */
+        #audioPlayer {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Автоматически воспроизводимый аудиоплеер -->
+    <audio id="audioPlayer" autoplay loop controls>
+        <source src="audio/site(SLOW+REVERB).mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <h1>ДОСТУП РАЗБЛОКИРОВАН</h1>
+    <p>
+        <a href="#" onclick="showSecretLink();" style="color:#800000;">Секретная информация...</a>
+    </p>
+    <p><a href="index.html" style="color:#800000;">← Назад</a></p>
+
+    <p id="secretLink">
+        Ссылка на секретную информацию: 
+        <a href="https://t.me/+3GKr2Ux_LGc5ZjVi" target="_blank">https://t.me/+3GKr2Ux_LGc5ZjVi</a>
+    </p>
+
+    <script>
+        // Функция для показа секретной ссылки
+        function showSecretLink() {
+            alert('Ссылка на секретную информацию:\nhttps://t.me/+3GKr2Ux_LGc5ZjVi');
+            document.getElementById('secretLink').style.display = 'block';
+        }
+
+        // Обход ограничений автовоспроизведения
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('audioPlayer');
+            
+            // Попытка автоматического воспроизведения с обработкой ошибок
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Показываем сообщение, если автовоспроизведение заблокировано
+                    console.log('Автовоспроизведение заблокировано. Нажмите на страницу для запуска музыки.');
+                    document.body.onclick = function() {
+                        audio.play();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
