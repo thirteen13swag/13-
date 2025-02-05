@@ -66,20 +66,6 @@
             cursor: pointer; 
         }
 
-        .secret-link {
-            color: #FF0000 !important;
-            text-decoration: none;
-            font-size: 1.2em;
-            border: 1px solid #FF0000;
-            padding: 5px 10px;
-            transition: all 0.3s;
-        }
-
-        .secret-link:hover {
-            background: rgba(255,0,0,0.2);
-            text-shadow: 0 0 10px #FF0000;
-        }
-
         @keyframes glitch-text {
             0% { transform: translate(0) }
             20% { transform: translate(-2px, -2px) }
@@ -92,16 +78,6 @@
 <body>
     <div class="container">
         <h1 class="glitch" data-text="STOP DANCE">STOP DANCE</h1>
-        <h1>STOP DANCE</h1>
-        <p>Нажмите на ссылку, чтобы перейти:</p>
-
-        <!-- Исправленная ссылка -->
-        <a href="https://thirteen13swag.github.io/13OCK/" 
-           class="secret-link"
-           target="_blank"
-           id="mainLink">
-            13OCK
-        </a>
         
         <div id="spectrogram"></div>
         
@@ -222,25 +198,9 @@
       }
 
       drawSpectrogram();
+    </script>
 
-      // Проверка доступности ссылки
-      document.getElementById('mainLink').addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          // Проверяем доступность URL
-          fetch(this.href)
-              .then(response => {
-                  if(response.ok) {
-                      window.open(this.href, '_blank');
-                  } else {
-                      alert('Ссылка временно недоступна! Проверьте позже.');
-                  }
-              })
-              .catch(() => {
-                  alert('Ошибка подключения! Проверьте интернет.');
-              });
-      });
-
+    <script>
       // Размещение квадрата в случайном месте на странице
       function placeRandomSquare() {
           const squareSize = randomSquare.offsetWidth; 
@@ -251,6 +211,7 @@
       placeRandomSquare(); // Вызываем функцию при загрузке страницы
 
       window.addEventListener('resize', placeRandomSquare); // Перемещаем квадрат при изменении размера окна
+
     </script>
 </body>
 </html>
